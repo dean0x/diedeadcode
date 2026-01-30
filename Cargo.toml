@@ -5,7 +5,7 @@ edition = "2021"
 authors = ["Dean"]
 description = "Conservative TypeScript dead code detection with transitive analysis and confidence scoring"
 license = "MIT"
-repository = "https://github.com/dean/diedeadcode"
+repository = "https://github.com/dean0x/diedeadcode"
 keywords = ["typescript", "dead-code", "static-analysis", "lint"]
 categories = ["development-tools", "command-line-utilities"]
 
