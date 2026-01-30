@@ -13,7 +13,7 @@
 - **Fast** - Built on [oxc](https://oxc.rs) for blazing-fast parsing
 - **Conservative** - Confidence scoring reduces false positives
 - **Transitive analysis** - Detects code that's only called by other dead code
-- **Framework-aware** - Understands Next.js, React, Express patterns
+- **Framework-aware** - Understands Next.js, Express, Jest, Vitest patterns
 - **Configurable** - Ignore patterns, entry points, and more
 
 ## Installation
@@ -97,8 +97,9 @@ Not all dead code warnings are equal. `ddd` scores each finding:
 Factors that reduce confidence:
 - Dynamic imports (`import()`)
 - Reflection (`eval`, `Reflect.*`)
-- Framework conventions (lifecycle methods, hooks)
+- Decorated symbols (decorators often indicate framework usage)
 - String property access patterns
+- Exported symbols (may be used externally)
 
 ## Output Formats
 
@@ -126,7 +127,6 @@ ddd analyze . --format compact
 `ddd` is designed for large codebases:
 
 - Parallel file parsing with rayon
-- Incremental analysis (coming soon)
 - Memory-efficient AST traversal
 
 ## Contributing
