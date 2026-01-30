@@ -57,7 +57,7 @@ pub struct InitArgs {
     pub force: bool,
 
     /// Output format (toml or json)
-    #[arg(short, long, default_value = "toml")]
+    #[arg(long, default_value = "toml")]
     pub format: String,
 }
 

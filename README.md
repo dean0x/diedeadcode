@@ -43,29 +43,37 @@ ddd . --verbose
 ddd init
 
 # Output as JSON
-ddd . --format json
+ddd analyze . --format json
+
+# Check mode (exit code 1 if dead code found, useful for CI)
+ddd analyze . --check
 ```
 
 ## Configuration
 
-Create a `ddd.toml` in your project root:
+Run `ddd init` to generate a `ddd.toml` in your project root, or create one manually:
 
 ```toml
-# Entry points that should never be marked as dead
-entry_points = [
-    "src/index.ts",
-    "src/main.ts",
-]
+# Files to analyze
+include = ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+exclude = ["**/node_modules/**", "**/dist/**", "**/*.test.*"]
 
-# Patterns to ignore
-ignore = [
-    "**/*.test.ts",
-    "**/*.spec.ts",
-    "**/node_modules/**",
-]
+# Entry points
+[entry]
+files = ["src/index.ts", "src/main.ts"]
+patterns = ["**/pages/**/*.tsx"]  # e.g., Next.js pages
+autoDetect = true  # Detect from package.json
 
-# Minimum confidence threshold (0-100)
-min_confidence = 80
+# Output settings
+[output]
+format = "table"  # table, json, or compact
+minConfidence = "high"  # high, medium, or low
+showChains = true
+
+# Analysis settings
+[analysis]
+ignoreSymbols = ["logger", "debug"]
+ignorePatterns = ["^_"]  # Ignore symbols starting with _
 ```
 
 ## How It Works
@@ -99,10 +107,10 @@ Factors that reduce confidence:
 ddd .
 
 # JSON for tooling integration
-ddd . --format json
+ddd analyze . --format json
 
 # Compact single-line per issue
-ddd . --format compact
+ddd analyze . --format compact
 ```
 
 ## Exit Codes
