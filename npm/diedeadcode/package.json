@@ -1,0 +1,47 @@
+{
+  "name": "diedeadcode",
+  "version": "0.0.0",
+  "description": "Conservative TypeScript dead code detection with transitive analysis and confidence scoring",
+  "keywords": [
+    "typescript",
+    "javascript",
+    "dead-code",
+    "static-analysis",
+    "lint",
+    "unused-code",
+    "unused-exports"
+  ],
+  "author": "Dean",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dean0x/diedeadcode.git"
+  },
+  "homepage": "https://github.com/dean0x/diedeadcode#readme",
+  "bugs": {
+    "url": "https://github.com/dean0x/diedeadcode/issues"
+  },
+  "bin": {
+    "ddd": "bin/ddd",
+    "diedeadcode": "bin/ddd"
+  },
+  "files": [
+    "bin",
+    "scripts"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "optionalDependencies": {
+    "@diedeadcode/cli-darwin-arm64": "0.0.0",
+    "@diedeadcode/cli-darwin-x64": "0.0.0",
+    "@diedeadcode/cli-linux-arm64": "0.0.0",
+    "@diedeadcode/cli-linux-x64": "0.0.0",
+    "@diedeadcode/cli-linux-arm64-musl": "0.0.0",
+    "@diedeadcode/cli-linux-x64-musl": "0.0.0",
+    "@diedeadcode/cli-win32-x64": "0.0.0"
+  }
+}

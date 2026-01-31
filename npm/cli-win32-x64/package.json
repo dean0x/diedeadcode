@@ -1,0 +1,19 @@
+{
+  "name": "@diedeadcode/cli-win32-x64",
+  "version": "0.0.0",
+  "description": "diedeadcode native binary for Windows x64",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dean0x/diedeadcode.git"
+  },
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "files": [
+    "ddd.exe"
+  ]
+}

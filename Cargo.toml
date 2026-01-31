@@ -6,8 +6,20 @@ authors = ["Dean"]
 description = "Conservative TypeScript dead code detection with transitive analysis and confidence scoring"
 license = "MIT"
 repository = "https://github.com/dean0x/diedeadcode"
+homepage = "https://github.com/dean0x/diedeadcode"
+documentation = "https://github.com/dean0x/diedeadcode#readme"
+readme = "README.md"
 keywords = ["typescript", "dead-code", "static-analysis", "lint"]
 categories = ["development-tools", "command-line-utilities"]
+exclude = [
+    "npm/",
+    ".github/",
+    "scripts/",
+    "tests/",
+    "benches/",
+    ".gitignore",
+    ".npmignore",
+]
 
 [[bin]]
 name = "ddd"

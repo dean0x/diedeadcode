@@ -1,0 +1,22 @@
+{
+  "name": "@diedeadcode/cli-linux-x64",
+  "version": "0.0.0",
+  "description": "diedeadcode native binary for Linux x64 (glibc)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dean0x/diedeadcode.git"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "libc": [
+    "glibc"
+  ],
+  "files": [
+    "ddd"
+  ]
+}

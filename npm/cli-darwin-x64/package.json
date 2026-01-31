@@ -1,0 +1,19 @@
+{
+  "name": "@diedeadcode/cli-darwin-x64",
+  "version": "0.0.0",
+  "description": "diedeadcode native binary for macOS x64",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dean0x/diedeadcode.git"
+  },
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "files": [
+    "ddd"
+  ]
+}

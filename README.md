@@ -18,11 +18,31 @@
 
 ## Installation
 
+### npm (recommended)
+
+```bash
+npm install -D diedeadcode
+```
+
+Or run directly with npx:
+
+```bash
+npx diedeadcode .
+```
+
+### Cargo
+
 ```bash
 cargo install diedeadcode
 ```
 
-Or build from source:
+### Homebrew (macOS)
+
+```bash
+brew install dean0x/tap/diedeadcode
+```
+
+### Build from source
 
 ```bash
 git clone https://github.com/dean0x/diedeadcode.git

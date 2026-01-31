@@ -1,0 +1,22 @@
+{
+  "name": "@diedeadcode/cli-linux-arm64",
+  "version": "0.0.0",
+  "description": "diedeadcode native binary for Linux ARM64 (glibc)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dean0x/diedeadcode.git"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "libc": [
+    "glibc"
+  ],
+  "files": [
+    "ddd"
+  ]
+}

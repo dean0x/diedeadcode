@@ -1,0 +1,26 @@
+# Rust source
+src/
+target/
+Cargo.toml
+Cargo.lock
+rust-toolchain.toml
+
+# Tests and benchmarks
+tests/
+benches/
+
+# Git and GitHub
+.git/
+.github/
+.gitignore
+
+# Development
+.vscode/
+.idea/
+*.log
+
+# npm packages (published separately)
+npm/
+
+# Scripts
+scripts/

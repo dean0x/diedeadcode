@@ -1,0 +1,186 @@
+#!/usr/bin/env node
+
+const { spawnSync } = require("child_process");
+const { existsSync } = require("fs");
+const { join } = require("path");
+const os = require("os");
+
+/**
+ * Detect if running on musl libc (Alpine, etc.)
+ * @returns {boolean}
+ */
+function isMusl() {
+  // Check for Alpine
+  if (existsSync("/etc/alpine-release")) {
+    return true;
+  }
+
+  // Check ldd output for musl
+  try {
+    const { stdout } = spawnSync("ldd", ["--version"], {
+      encoding: "utf8",
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+    if (stdout && stdout.includes("musl")) {
+      return true;
+    }
+  } catch {
+    // ldd not available or failed
+  }
+
+  // Check /lib for musl
+  try {
+    const { stdout } = spawnSync("ls", ["/lib"], {
+      encoding: "utf8",
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+    if (stdout && stdout.includes("musl")) {
+      return true;
+    }
+  } catch {
+    // Failed to check /lib
+  }
+
+  return false;
+}
+
+/**
+ * Get the platform-specific package name
+ * @returns {string}
+ */
+function getPlatformPackage() {
+  const platform = os.platform();
+  const arch = os.arch();
+
+  const platformMap = {
+    darwin: {
+      arm64: "@diedeadcode/cli-darwin-arm64",
+      x64: "@diedeadcode/cli-darwin-x64",
+    },
+    linux: {
+      arm64: isMusl()
+        ? "@diedeadcode/cli-linux-arm64-musl"
+        : "@diedeadcode/cli-linux-arm64",
+      x64: isMusl()
+        ? "@diedeadcode/cli-linux-x64-musl"
+        : "@diedeadcode/cli-linux-x64",
+    },
+    win32: {
+      x64: "@diedeadcode/cli-win32-x64",
+    },
+  };
+
+  const platformPackages = platformMap[platform];
+  if (!platformPackages) {
+    throw new Error(
+      `Unsupported platform: ${platform}. ` +
+        `Supported platforms: darwin, linux, win32`
+    );
+  }
+
+  const packageName = platformPackages[arch];
+  if (!packageName) {
+    throw new Error(
+      `Unsupported architecture: ${arch} on ${platform}. ` +
+        `Supported architectures: ${Object.keys(platformPackages).join(", ")}`
+    );
+  }
+
+  return packageName;
+}
+
+/**
+ * Find the binary path
+ * @returns {string}
+ */
+function getBinaryPath() {
+  // Allow override via environment variable
+  if (process.env.DIEDEADCODE_BINARY_PATH) {
+    const envPath = process.env.DIEDEADCODE_BINARY_PATH;
+    if (existsSync(envPath)) {
+      return envPath;
+    }
+    console.error(
+      `Warning: DIEDEADCODE_BINARY_PATH set to ${envPath} but file does not exist`
+    );
+  }
+
+  const packageName = getPlatformPackage();
+  const binaryName = os.platform() === "win32" ? "ddd.exe" : "ddd";
+
+  // Try to find the binary in the platform package
+  const possiblePaths = [
+    // Installed as dependency
+    join(__dirname, "..", "node_modules", packageName, binaryName),
+    // Installed at root node_modules
+    join(__dirname, "..", "..", packageName, binaryName),
+    // Hoisted in monorepo
+    join(__dirname, "..", "..", "..", packageName, binaryName),
+    // pnpm structure
+    join(
+      __dirname,
+      "..",
+      "..",
+      ".pnpm",
+      "node_modules",
+      packageName,
+      binaryName
+    ),
+  ];
+
+  for (const binPath of possiblePaths) {
+    if (existsSync(binPath)) {
+      return binPath;
+    }
+  }
+
+  // Try require.resolve as last resort
+  try {
+    const packagePath = require.resolve(`${packageName}/package.json`);
+    const binPath = join(packagePath, "..", binaryName);
+    if (existsSync(binPath)) {
+      return binPath;
+    }
+  } catch {
+    // Package not installed
+  }
+
+  // Check for locally downloaded binary (from postinstall fallback)
+  const localBin = join(__dirname, "..", "bin", binaryName);
+  if (existsSync(localBin)) {
+    return localBin;
+  }
+
+  throw new Error(
+    `Could not find diedeadcode binary for ${os.platform()}-${os.arch()}.\n` +
+      `Package: ${packageName}\n` +
+      `Searched paths:\n${possiblePaths.map((p) => `  - ${p}`).join("\n")}\n\n` +
+      `Try reinstalling with: npm install diedeadcode\n` +
+      `Or install via cargo: cargo install diedeadcode`
+  );
+}
+
+function main() {
+  try {
+    const binaryPath = getBinaryPath();
+    const result = spawnSync(binaryPath, process.argv.slice(2), {
+      stdio: "inherit",
+      shell: false,
+    });
+
+    if (result.error) {
+      if (result.error.code === "ENOENT") {
+        console.error(`Binary not found: ${binaryPath}`);
+        process.exit(1);
+      }
+      throw result.error;
+    }
+
+    process.exit(result.status ?? 1);
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+}
+
+main();
