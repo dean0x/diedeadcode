@@ -138,6 +138,8 @@ jobs:
         run: node scripts/generate-npm-packages.mjs ${{ steps.version.outputs.VERSION }} artifacts
 
       - name: Publish platform packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           for pkg in cli-darwin-arm64 cli-darwin-x64 cli-linux-x64 cli-linux-arm64 cli-linux-x64-musl cli-linux-arm64-musl cli-win32-x64; do
             echo "Publishing @diedeadcode/$pkg..."
@@ -145,6 +147,8 @@ jobs:
           done
 
       - name: Publish main package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish npm/diedeadcode --access public --provenance
 
   publish-crates:
