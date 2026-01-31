@@ -1,6 +1,6 @@
 {
-  "name": "@diedeadcode/cli-linux-x64",
-  "version": "0.0.0",
+  "name": "@dean0x/cli-linux-x64",
+  "version": "0.1.0",
   "description": "diedeadcode native binary for Linux x64 (glibc)",
   "license": "MIT",
   "repository": {

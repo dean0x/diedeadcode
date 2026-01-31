@@ -21,13 +21,13 @@
 ### npm (recommended)
 
 ```bash
-npm install -D diedeadcode
+npm install -D @dean0x/diedeadcode
 ```
 
 Or run directly with npx:
 
 ```bash
-npx diedeadcode .
+npx @dean0x/diedeadcode .
 ```
 
 ### Cargo

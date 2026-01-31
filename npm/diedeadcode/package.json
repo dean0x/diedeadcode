@@ -1,6 +1,6 @@
 {
-  "name": "diedeadcode",
-  "version": "0.0.0",
+  "name": "@dean0x/diedeadcode",
+  "version": "0.1.0",
   "description": "Conservative TypeScript dead code detection with transitive analysis and confidence scoring",
   "keywords": [
     "typescript",
@@ -36,12 +36,12 @@
     "node": ">=16"
   },
   "optionalDependencies": {
-    "@diedeadcode/cli-darwin-arm64": "0.0.0",
-    "@diedeadcode/cli-darwin-x64": "0.0.0",
-    "@diedeadcode/cli-linux-arm64": "0.0.0",
-    "@diedeadcode/cli-linux-x64": "0.0.0",
-    "@diedeadcode/cli-linux-arm64-musl": "0.0.0",
-    "@diedeadcode/cli-linux-x64-musl": "0.0.0",
-    "@diedeadcode/cli-win32-x64": "0.0.0"
+    "@dean0x/cli-darwin-arm64": "0.1.0",
+    "@dean0x/cli-darwin-x64": "0.1.0",
+    "@dean0x/cli-linux-arm64": "0.1.0",
+    "@dean0x/cli-linux-x64": "0.1.0",
+    "@dean0x/cli-linux-arm64-musl": "0.1.0",
+    "@dean0x/cli-linux-x64-musl": "0.1.0",
+    "@dean0x/cli-win32-x64": "0.1.0"
   }
 }

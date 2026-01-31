@@ -1,6 +1,6 @@
 {
-  "name": "@diedeadcode/cli-win32-x64",
-  "version": "0.0.0",
+  "name": "@dean0x/cli-win32-x64",
+  "version": "0.1.0",
   "description": "diedeadcode native binary for Windows x64",
   "license": "MIT",
   "repository": {

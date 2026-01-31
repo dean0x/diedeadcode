@@ -49,25 +49,25 @@ function getPlatformInfo() {
   const platformMap = {
     darwin: {
       arm64: {
-        package: "@diedeadcode/cli-darwin-arm64",
+        package: "@dean0x/cli-darwin-arm64",
         binary: "ddd",
       },
       x64: {
-        package: "@diedeadcode/cli-darwin-x64",
+        package: "@dean0x/cli-darwin-x64",
         binary: "ddd",
       },
     },
     linux: {
       arm64: isMusl()
-        ? { package: "@diedeadcode/cli-linux-arm64-musl", binary: "ddd" }
-        : { package: "@diedeadcode/cli-linux-arm64", binary: "ddd" },
+        ? { package: "@dean0x/cli-linux-arm64-musl", binary: "ddd" }
+        : { package: "@dean0x/cli-linux-arm64", binary: "ddd" },
       x64: isMusl()
-        ? { package: "@diedeadcode/cli-linux-x64-musl", binary: "ddd" }
-        : { package: "@diedeadcode/cli-linux-x64", binary: "ddd" },
+        ? { package: "@dean0x/cli-linux-x64-musl", binary: "ddd" }
+        : { package: "@dean0x/cli-linux-x64", binary: "ddd" },
     },
     win32: {
       x64: {
-        package: "@diedeadcode/cli-win32-x64",
+        package: "@dean0x/cli-win32-x64",
         binary: "ddd.exe",
       },
     },

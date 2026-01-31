@@ -59,13 +59,13 @@ cd npm/diedeadcode && npm publish --access public --otp=CODE && cd ../..
 
 | Platform | npm Package |
 |----------|-------------|
-| macOS ARM64 | `@diedeadcode/cli-darwin-arm64` |
-| macOS x64 | `@diedeadcode/cli-darwin-x64` |
-| Linux x64 (glibc) | `@diedeadcode/cli-linux-x64` |
-| Linux ARM64 (glibc) | `@diedeadcode/cli-linux-arm64` |
-| Linux x64 (musl) | `@diedeadcode/cli-linux-x64-musl` |
-| Linux ARM64 (musl) | `@diedeadcode/cli-linux-arm64-musl` |
-| Windows x64 | `@diedeadcode/cli-win32-x64` |
+| macOS ARM64 | `@dean0x/cli-darwin-arm64` |
+| macOS x64 | `@dean0x/cli-darwin-x64` |
+| Linux x64 (glibc) | `@dean0x/cli-linux-x64` |
+| Linux ARM64 (glibc) | `@dean0x/cli-linux-arm64` |
+| Linux x64 (musl) | `@dean0x/cli-linux-x64-musl` |
+| Linux ARM64 (musl) | `@dean0x/cli-linux-arm64-musl` |
+| Windows x64 | `@dean0x/cli-win32-x64` |
 
 ### Required Secrets (for automated CI)
 

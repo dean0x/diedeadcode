@@ -1,6 +1,6 @@
 {
-  "name": "@diedeadcode/cli-darwin-arm64",
-  "version": "0.0.0",
+  "name": "@dean0x/cli-darwin-arm64",
+  "version": "0.1.0",
   "description": "diedeadcode native binary for macOS ARM64",
   "license": "MIT",
   "repository": {
