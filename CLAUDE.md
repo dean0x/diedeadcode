@@ -48,11 +48,15 @@ node scripts/generate-npm-packages.mjs X.Y.Z artifacts
 # 6. Login to npm (if not already)
 npm login
 
-# 7. Publish each package (requires 2FA OTP)
+# 7. Set npm token and publish (use automation token with 2FA bypass)
+echo "//registry.npmjs.org/:_authToken=YOUR_TOKEN" > ~/.npmrc
 for pkg in cli-darwin-arm64 cli-darwin-x64 cli-linux-x64 cli-linux-arm64 cli-linux-x64-musl cli-linux-arm64-musl cli-win32-x64; do
-  cd npm/$pkg && npm publish --access public --otp=CODE && cd ../..
+  cd npm/$pkg && npm publish --access public && cd ../..
 done
-cd npm/diedeadcode && npm publish --access public --otp=CODE && cd ../..
+cd npm/diedeadcode && npm publish --access public && cd ../..
+
+# 8. Publish to crates.io
+cargo publish
 ```
 
 ### Supported Platforms
@@ -94,6 +98,24 @@ cargo test
 # Analyze test fixtures
 ./target/release/ddd tests/integration/fixtures/basic
 ```
+
+## Distribution Channels
+
+| Method | Command |
+|--------|---------|
+| curl | `curl -fsSL https://raw.githubusercontent.com/dean0x/diedeadcode/main/install.sh \| sh` |
+| npm | `npm install -D @dean0x/diedeadcode` |
+| npx | `npx @dean0x/diedeadcode .` |
+| cargo | `cargo install diedeadcode` |
+| Homebrew | `brew install dean0x/tap/diedeadcode` |
+| Binary | [GitHub Releases](https://github.com/dean0x/diedeadcode/releases/latest) |
+
+## Homebrew Tap
+
+To set up the Homebrew tap:
+1. Create repo `dean0x/homebrew-tap` on GitHub
+2. Copy `homebrew/diedeadcode.rb` to `Formula/diedeadcode.rb` in that repo
+3. Users can then `brew install dean0x/tap/diedeadcode`
 
 ## Key Files
 

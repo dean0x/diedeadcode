@@ -18,7 +18,13 @@
 
 ## Installation
 
-### npm (recommended)
+### Shell (macOS/Linux)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dean0x/diedeadcode/main/install.sh | sh
+```
+
+### npm
 
 ```bash
 npm install -D @dean0x/diedeadcode
@@ -36,19 +42,15 @@ npx @dean0x/diedeadcode .
 cargo install diedeadcode
 ```
 
-### Homebrew (macOS)
+### Homebrew
 
 ```bash
 brew install dean0x/tap/diedeadcode
 ```
 
-### Build from source
+### Download binary
 
-```bash
-git clone https://github.com/dean0x/diedeadcode.git
-cd diedeadcode
-cargo build --release
-```
+Download from [GitHub Releases](https://github.com/dean0x/diedeadcode/releases/latest).
 
 ## Quick Start
 
